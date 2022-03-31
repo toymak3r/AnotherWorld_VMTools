@@ -39,7 +39,393 @@ def get_text_string(str_id):
     return the_string
 
 
+# March 30, 2022:
+# I've manually checked all the level 2 addresses below
+# and they're really never called! Looks like dead-code that
+# ended up included in the build of the released bytecode.
+# It is not a lot of code, though. So it is probably not any
+# significantly big "unreleased" feature.
+
+POSSIBLY_UNUSED_CODEBLOCKS = {
+  0: [
+      0x007B,
+      0x0D1E,
+      0x109E
+     ],
+  1: [
+      0x00D2,
+      0x1527,
+      0x154E,
+      0x1BD6
+     ],
+  2: [
+      0x0054,
+      0x011A,
+      0x017E,
+      0x01D1,
+      0x01D8,
+      0x0480,
+      0x05A3,
+      0x05D6,
+      0x08A1,
+      0x0929,
+      0x0C6D,
+      0x0CFF,
+      0x169F,
+      0x2F0F,
+      0x3564,
+      0x385A,
+      0x42AA,
+      0x42CA,
+      0x4460,
+      0x4480,
+      0x4F37,
+      0x4BA2
+     ],
+  3: [
+      0x0043,
+      0x016F,
+      0x0190,
+      0x0691,
+      0x06BC,
+      0x070B,
+      0x0712,
+      0x0849,
+      0x0AEB,
+      0x0B19,
+      0x1027,
+      0x10FA,
+      0x129B,
+      0x1963,
+      0x2668,
+      0x26D8,
+      0x282D,
+      0x330F,
+      0x3325,
+      0x3B69,
+      0x4210,
+      0x4219,
+      0x470F,
+      0x47D1,
+      0x4A6A,
+      0x5746,
+      0x5754,
+      0x5AE2,
+      0x652C,
+      0x6566,
+      0x6595,
+      0x65A4,
+      0x65D0,
+      0x6778,
+      0x67BB,
+      0x67DD,
+      0x68D1,
+      0x68E0,
+      0x7453,
+      0x78C8,
+      0x8323,
+      0x88DD,
+      0x8973,
+      0x89FE,
+      0x8A0C,
+      0x8F43,
+      0x8F63,
+      0x90DA,
+      0x90FA
+     ],
+  4: [
+      0x015D,
+      0x106F,
+      0x1456,
+      0x1518,
+      0x1D87,
+      0x2250,
+      0x25B7,
+      0x2617,
+      0x27E8,
+      0x297E,
+      0x2DF4,
+      0x30CD,
+      0x314D,
+      0x3A81,
+      0x3F75,
+      0x4080,
+      0x40BA,
+      0x42EE,
+      0x42F5,
+      0x4799,
+      0x4933,
+      0x49E6,
+      0x4AD1,
+      0x4CF5,
+      0x4DC9,
+      0x4F73,
+      0x50BA,
+      0x5282,
+      0x5BC7,
+      0x5E56,
+      0x5ED1,
+      0x5FCA,
+      0x60D7,
+      0x60E4,
+      0x6A6F,
+      0x71A8,
+      0x71B1,
+      0x7786,
+      0x7848,
+      0x8765,
+      0x877F,
+      0x878D,
+      0x8A97,
+      0x94E8,
+      0x9522,
+      0x9531,
+      0x9551,
+      0x9560,
+      0x958C,
+      0x9734,
+      0x9768,
+      0x9777,
+      0x9799,
+      0x987C,
+      0x988B,
+      0xA105,
+      0xA135,
+      0xA267,
+      0x4B36,
+      0xAD4B,
+      0xC238,
+      0xC279,
+      0xC306,
+      0xD898,
+      0xD8F5,
+      0xDD31,
+      0xE615,
+      0xE7B9,
+      0xE957,
+      0xE977,
+      0xEAEB,
+      0xEB0B,
+      0xEF44,
+      0xF2E0,
+      0xF309,
+      0xF321
+     ],
+  5: [
+      0x0405,
+      0x0A27,
+      0x0DCC,
+      0x13D9,
+      0x1868,
+      0x1903,
+      0x1DE7,
+      0x201A
+     ],
+  6: [
+      0x01DA,
+      0x084C,
+      0x0BD2,
+      0x0C48,
+      0x1460,
+      0x1A6A,
+      0x1BDC,
+      0x1E60,
+      0x2000,
+      0x2371,
+      0x269C,
+      0x275F,
+      0x2803,
+      0x2828,
+      0x28EF,
+      0x2CA5,
+      0x2D43,
+      0x2DF6,
+      0x2E17,
+      0x2E3B,
+      0x2E6A,
+      0x2E7C,
+      0x2E82,
+      0x2FAC,
+      0x3006,
+      0x3032,
+      0x3039,
+      0x319A,
+      0x31BF,
+      0x31C8,
+      0x33E9,
+      0x3579,
+      0x3ACF,
+      0x3BAB,
+      0x3C97,
+      0x3CD3,
+      0x4159,
+      0x422D,
+      0x43E1,
+      0x4532,
+      0x46FA,
+      0x4D82,
+      0x50AB,
+      0x536F,
+      0x53EA,
+      0x5441,
+      0x5463,
+      0x5476,
+      0x54B3,
+      0x5572,
+      0x5584,
+      0x5688,
+      0x5695,
+      0x5B54,
+      0x6050,
+      0x678D,
+      0x6796,
+      0x6D8E,
+      0x6E50,
+      0x717B,
+      0x7D16,
+      0x7DA4,
+      0x7DB2,
+      0x80C8,
+      0x8913,
+      0x8B66,
+      0x8BCD,
+      0x8C07,
+      0x8C36,
+      0x8C45,
+      0x8C71,
+      0x8E19,
+      0x8E4D,
+      0x8E5C,
+      0x8E7E,
+      0x8F61,
+      0x8F70,
+      0x9712,
+      0x9742,
+      0x9C30,
+      0x9C6A,
+      0x9C73,
+      0x9DD7,
+      0x9DEF,
+      0x9E13,
+      0x9E53,
+      0x9E79,
+      0x9EEB,
+      0xA02A,
+      0xA07A,
+      0xA13F,
+      0xA2D4,
+      0xA600,
+      0xA6D6,
+      0xA736,
+      0xAA8F,
+      0xAB67,
+      0xB26E,
+      0xB27B,
+      0xB283,
+      0xB5F2,
+      0xB60D,
+      0xB7F0,
+      0xB994,
+      0xBB3E,
+      0xBB5E,
+      0xBCD2,
+      0xBCF2,
+      0xC113,
+      0xC49D
+     ],
+  7: [
+      0x0939,
+      0x0AD7
+     ],
+  8: [
+      0x014F,
+      0x029D,
+      0x03D4,
+      0x03E1,
+      0x064E,
+      0x06C1,
+      0x0733,
+      0x1078,
+      0x1088
+     ]
+}
+
 LABELED_CINEMATIC_ENTRIES = {
+  1: {
+    0x0F72: "WALKING_FEET_ARRIVING_0",
+    0x0F7E: "WALKING_FEET_ARRIVING_1",
+    0x0FA2: "WALKING_FEET_ARRIVING_2",
+    0x0FCA: "WALKING_FEET_ARRIVING_3",
+    0x0FF2: "WALKING_FEET_ARRIVING_4",
+    0x101A: "WALKING_FEET_ARRIVING_5",
+    0x1048: "WALKING_FEET_ARRIVING_6",
+    0x105E: "WALKING_FEET_ARRIVING_7",
+    0x1082: "WALKING_FEET_ARRIVING_8",
+    0x10B6: "WALKING_FEET_ARRIVING_9",
+    0x10E2: "WALKING_FEET_ARRIVING_10",
+    0x10E2: "WALKING_FEET_ARRIVING_11",
+    0x110A: "WALKING_FEET_ARRIVING_12",
+    0x113E: "WALKING_FEET_ARRIVING_13",
+    0x1158: "WALKING_FEET_ARRIVING_14", 
+    0x117E: "WALKING_FEET_ARRIVING_15",
+    0x11AC: "WALKING_FEET_ARRIVING_16",
+    0x11C6: "WALKING_FEET_ARRIVING_17",
+    0x1200: "WALKING_FEET_ARRIVING_18",
+    0x122A: "WALKING_FEET_ARRIVING_19",
+    0x1278: "WALKING_FEET_ARRIVING_20",
+    0x1292: "WALKING_FEET_ARRIVING_21",
+    0x12AC: "WALKING_FEET_ARRIVING_22",
+    0x12F2: "WALKING_FEET_ARRIVING_23",
+    0x130C: "WALKING_FEET_ARRIVING_24",
+    0x1326: "WALKING_FEET_ARRIVING_25",
+    0x1340: "WALKING_FEET_ARRIVING_26",
+    0x135A: "WALKING_FEET_ARRIVING_27",
+    0x1374: "WALKING_FEET_ARRIVING_28",
+    0x13EA: "WALKING_FEET_ARRIVING_29",
+    0x1404: "WALKING_FEET_ARRIVING_30",
+    0x141E: "WALKING_FEET_ARRIVING_31",
+    0x143C: "WALKING_FEET_ARRIVING_32",
+    0x145A: "WALKING_FEET_ARRIVING_33",
+    0x1478: "WALKING_FEET_ARRIVING_34",
+    0x14F6: "WALKING_FEET_ARRIVING_35",
+    0x1514: "WALKING_FEET_ENTERING_0",
+    0x1532: "WALKING_FEET_ENTERING_1",
+    0x1584: "WALKING_FEET_ENTERING_2",
+    0x15B6: "WALKING_FEET_ENTERING_3",
+    0x15D0: "WALKING_FEET_ENTERING_4",
+    0x15EA: "WALKING_FEET_ENTERING_5",
+    0x1658: "WALKING_FEET_ENTERING_6",
+    0x166A: "WALKING_FEET_ENTERING_7",
+    0x16A2: "WALKING_FEET_ENTERING_8",
+    0x16EA: "WALKING_FEET_ENTERING_9",
+    0x1712: "WALKING_FEET_ENTERING_10",
+    0xF6D2: "CARKEY",
+    0xF7D8: "DNA_0",
+    0xF7EA: "DNA_1",
+    0xF7FC: "DNA_2",
+    0xF810: "DNA_3",
+    0xF822: "DNA_4",
+    0xF834: "DNA_5",
+    0xF848: "DNA_6",
+    0xF85C: "DNA_7",
+    0xF870: "DNA_8",
+    0xF880: "DNA_9",
+    0xF894: "DNA_10",
+    0xF8A8: "DNA_11",
+    0xF8BC: "DNA_12",
+    0xF8D0: "DNA_13",
+    0xF8E2: "DNA_14",
+    0xF8F4: "DNA_15",
+    0xF906: "DNA_16",
+  },
+  2: {
+    0x4D5A: "BEETLE_WALKING_LEFT_0",
+    0x4DC6: "BEETLE_WALKING_LEFT_1",
+    0x4DE2: "BEETLE_WALKING_LEFT_2",
+    0x4DFE: "BEETLE_WALKING_LEFT_3",
+    0x4E1E: "BEETLE_WALKING_LEFT_4",
+    0x4E3A: "BEETLE_WALKING_LEFT_5",
+    0x4E56: "BEETLE_WALKING_LEFT_6",
     0x9ADC: "SLUG_0",
     0x9B04: "SLUG_1",
     0x9B30: "SLUG_2",
@@ -53,21 +439,30 @@ LABELED_CINEMATIC_ENTRIES = {
     0x9CB0: "SLUG_10",
     0x9CE0: "SLUG_11",
     0x9D10: "SLUG_12",
-    0x9D3C: "SLUG_13"
+    0x9D3C: "SLUG_13",
+    0x9FBC: "BEETLE_WALKING_RIGHT_0",
+    0xA028: "BEETLE_WALKING_RIGHT_1",
+    0xA044: "BEETLE_WALKING_RIGHT_2",
+    0xA060: "BEETLE_WALKING_RIGHT_3",
+    0xA080: "BEETLE_WALKING_RIGHT_4",
+    0xA09C: "BEETLE_WALKING_RIGHT_5",
+    0xA0B8: "BEETLE_WALKING_RIGHT_6",
+  },
 }
 
 
-def register_cinematic_entry(x, y, zoom, address):
+def register_cinematic_entry(x, y, palette_number, zoom, address):
     global cinematic_counter
     if address in cinematic_entries.keys():
         return cinematic_entries[address]["label"]
 
-    if address in LABELED_CINEMATIC_ENTRIES:
-        label = "LEVEL_%d_CINEMATIC_%s" % (game_level, LABELED_CINEMATIC_ENTRIES[address])
+    if game_level in LABELED_CINEMATIC_ENTRIES.keys() and address in LABELED_CINEMATIC_ENTRIES[game_level]:
+        label = "LEVEL_%d_CINEMATIC_%s" % (game_level, LABELED_CINEMATIC_ENTRIES[game_level][address])
     else:
         label = "LEVEL_%d_CINEMATIC_%03d" % (game_level, cinematic_counter)
     cinematic_counter += 1
     cinematic_entries[address] = {
+        'palette_number': palette_number,
         'x': x,
         'y': y,
         'zoom': zoom,
@@ -76,7 +471,7 @@ def register_cinematic_entry(x, y, zoom, address):
     return label
 
 
-def register_video2_entry(x, y, zoom, address):
+def register_video2_entry(x, y, palette_number, zoom, address):
     global video2_counter
     if address in video2_entries.keys():
         return video2_entries[address]["label"]
@@ -84,6 +479,7 @@ def register_video2_entry(x, y, zoom, address):
     label = "COMMON_VIDEO_%03d" % (video2_counter)
     video2_counter += 1
     video2_entries[address] = {
+        'palette_number': palette_number,
         'x': x,
         'y': y,
         'zoom': zoom,
@@ -95,10 +491,10 @@ def register_video2_entry(x, y, zoom, address):
 def print_video_entries():
     for addr in sorted(cinematic_entries.keys()):
         v = cinematic_entries[addr]
-        print (f"CINEMATIC: 0x{addr:04X} x:{v['x']} y:{v['y']} zoom:{v['zoom']}")
+        print (f"label:{v['label']}: CINEMATIC: 0x{addr:04X} x:{v['x']} y:{v['y']} zoom:{v['zoom']}")
     for addr in sorted(video2_entries.keys()):
         v = video2_entries[addr]
-        print (f"VIDEO2: 0x{addr:04X} x:{v['x']} y:{v['y']} zoom:{v['zoom']}")
+        print (f"label:{v['label']}: VIDEO2: 0x{addr:04X} x:{v['x']} y:{v['y']} zoom:{v['zoom']}")
 
 
 SPECIAL_PURPOSE_VARS = {
@@ -124,7 +520,8 @@ def getVariableName(value):
     else:
         return "0x%02X" % value
 
-
+# TODO: KNOWN LABELS
+# level 1, 0x0219 = DNA_ANIMATION
 def get_label(addr):
     return "LABEL_%04X" % addr
 
@@ -145,13 +542,14 @@ class AWVM_Trace(ExecTrace):
             header += "%s\t\tEQU 0x%04X\n" % (v['label'], addr)
         return header
 
+
     def disasm_instruction(self, opcode):
         if (opcode & 0x80) == 0x80:  # VIDEO
             offset = (((opcode & 0x7F) << 8) | self.fetch()) * 2
             x = self.fetch()
             y = self.fetch()
             #print("found video_entry {} at PC={}".format(hex(offset), hex(self.PC)))
-            label = register_cinematic_entry(x, y, "0x40", offset)
+            label = register_cinematic_entry(x, y, self.current_palette_number, "0x40", offset)
             return "video type=%d, offset=%s, x=%d, y=%d" % (CINEMATIC, label, x, y)
 
         elif (opcode & 0x40) == 0x40: # VIDEO
@@ -195,10 +593,10 @@ class AWVM_Trace(ExecTrace):
                     zoom_str = "[0x%02x]" % self.fetch()
 
             if opcode & 3 == 3:
-                label = register_video2_entry(x_str, y_str, zoom_str, offset)
+                label = register_video2_entry(x_str, y_str, self.current_palette_number, zoom_str, offset)
                 return "video type=%d, offset=%s, x=%s, y=%s, zoom=%s" % (VIDEO2, label, x_str, y_str, zoom_str)
             else:
-                label = register_cinematic_entry(x_str, y_str, zoom_str, offset)
+                label = register_cinematic_entry(x_str, y_str, self.current_palette_number, zoom_str, offset)
                 return "video type=%d, offset=%s, x=%s, y=%s, zoom=%s" % (CINEMATIC, label, x_str, y_str, zoom_str)
 
         elif opcode == 0x00: # movConst
@@ -304,6 +702,7 @@ class AWVM_Trace(ExecTrace):
         elif opcode == 0x0b: # setPalette
             paletteId = self.fetch()
             self.fetch() # waste a byte...
+            self.current_palette_number = paletteId
             return "setPalette 0x%02X" % paletteId
 
         elif opcode == 0x0c: # freezeChannel
@@ -340,7 +739,6 @@ class AWVM_Trace(ExecTrace):
             return "blitFramebuffer 0x%02X" % pageId
 
         elif opcode == 0x11: # killChannel
-            self.return_from_subroutine()
             return "killChannel"
 
         elif opcode == 0x12: # text
@@ -394,8 +792,6 @@ class AWVM_Trace(ExecTrace):
         elif opcode == 0x19: # load
             immediate = self.fetch()
             immediate = (immediate << 8) | self.fetch()
-            if immediate > 0x91:
-                self.return_from_subroutine()
             return "load id=0x%04X" % immediate
 
         elif opcode == 0x1a: # song
@@ -410,6 +806,7 @@ class AWVM_Trace(ExecTrace):
             self.illegal_instruction(opcode)
             return "; DISASM ERROR! Illegal instruction (opcode = 0x%02X)" % opcode
 
+
 used_pdata = []
 def visited_pdata(addr):
     """ Keeps track of all polygon data byte addresses that are
@@ -417,6 +814,7 @@ def visited_pdata(addr):
     global used_pdata
     if addr not in used_pdata:
         used_pdata.append(addr)
+
 
 def print_unused_polygon_data():
     """Prints which ranges of the polygon data have
@@ -438,160 +836,12 @@ def print_unused_polygon_data():
         end = max_addr
         print (f"{hex(start)}-{hex(end)} ({(end-start+1)})")
 
-game_level = None
-polygon_data = None
-pdata_offset = 0
-def fetch_polygon_data():
-    global pdata_offset
-    try:
-        value = polygon_data[game_level << 16 | pdata_offset]
-    except:
-        print ("ERROR: exception on fetch_polygon_data() FIXME!")
-        return 0
-    # visited_pdata(pdata_offset)
-    pdata_offset += 1
-    return value
-
-DEFAULT_ZOOM = 0x40
-MAX_POINTS = 50
-def fillPolygon(c, zoom, color, cx, cy):
-    #print("    <{}>".format(hex(pdata_offset)))
-    bbox_w = fetch_polygon_data() * float(zoom) / DEFAULT_ZOOM;
-    bbox_h = fetch_polygon_data() * float(zoom) / DEFAULT_ZOOM;
-    numPoints = fetch_polygon_data()
-    #print("        -> {} points polygon".format(numPoints))
-
-    if not ((numPoints & 1) == 0 and numPoints < MAX_POINTS):
-        print (f"error: numPoints = {numPoints}")
-        return # FIXME! sys.exit(-1)
-
-    #Read all points, directly from bytecode segment
-    for i in range(numPoints):
-        x = fetch_polygon_data() * float(zoom) / DEFAULT_ZOOM
-        y = fetch_polygon_data() * float(zoom) / DEFAULT_ZOOM
-        #print ("        {}   x:{} y:{}".format(hex(pdata_offset), x, y))
-        if i==0:
-            c.move_to(cx - bbox_w/2 + x, cy - bbox_h/2 + y)
-        else:
-            c.line_to(cx - bbox_w/2 + x, cy - bbox_h/2 + y)
-
-    c.close_path()
-    c.set_source_rgb(0, 0, 0) # TODO: add color fill
-    c.stroke()
-
-def readAndDrawPolygon(c, color, zoom, x, y):
-    global pdata_offset
-
-    value = fetch_polygon_data()
-
-    if value >= 0xC0:
-        if color & 0x80:
-            color = value & 0x3F
-
-        backup = pdata_offset
-        fillPolygon(c, zoom, color, x, y)
-        pdata_offset = backup
-    else:
-        value &= 0x3F
-        if value == 2:
-            readAndDrawPolygonHierarchy(c, zoom, x, y)
-        else:
-            print("ERROR: readAndDrawPolygon() (value != 2)\n")
-            return # FIXME! sys.exit(-1)
-
-def readAndDrawPolygonHierarchy(c, zoom, pgc_x, pgc_y):
-    global pdata_offset
-    pt_x = pgc_x - (fetch_polygon_data() * float(zoom) / DEFAULT_ZOOM)
-    pt_y = pgc_y - (fetch_polygon_data() * float(zoom) / DEFAULT_ZOOM)
-    num_children = fetch_polygon_data()
-
-    #print ("  hierarchy with {} children.".format(num_children))
-    for child in range(num_children):
-
-        offset = fetch_polygon_data()
-        offset = offset << 8 | fetch_polygon_data()
-
-        po_x = pt_x + (fetch_polygon_data() * float(zoom) / DEFAULT_ZOOM)
-        po_y = pt_y + (fetch_polygon_data() * float(zoom) / DEFAULT_ZOOM)
-        #print "child #{}: offset={} ({}) po_x={} po_y={}".format(
-        #  child,
-        #  hex((2*offset) & 0xFFFF), hex(offset),
-        #  po_x, po_y)
-
-        color = 0xFF
-        if offset & 0x8000:
-            color = fetch_polygon_data() & 0x7F
-            fetch_polygon_data() #and waste a byte...
-
-        backup = pdata_offset
-
-        pdata_offset = (offset & 0x7FFF) * 2
-        readAndDrawPolygon(c, color, zoom, po_x, po_y);
-
-        pdata_offset = backup
-
-import os
-from cairo import SVGSurface, Context, Matrix
-COLOR_BLACK = 0xFF
-def extract_polygon_data(romset_dir, cinematic):
-    global polygon_data, pdata_offset
-    global cinematic_entries
-    global cinematic_counter
-    global video2_entries
-    global game_level
-
-    if cinematic:
-        try:
-            polygon_data = open(f"{romset_dir}/cinematic.rom", "rb").read()
-        except:
-            print("FIXME! Did not find a cinematic.rom file...")
-            return
-        entries = cinematic_entries
-        level_path = f"{output_dir}/level_{game_level}"
-        dirpath = f"{level_path}/cinematic/"
-        makedir(level_path)
-    else:
-        try:
-            polygon_data = open(f"{romset_dir}/video2.rom", "rb").read()
-        except:
-            print("FIXME! Did not find a video2.rom file...")
-            return
-
-        entries = video2_entries
-        dirpath = f"{output_dir}/common_video/"
-        game_level = 0
-
-    makedir(dirpath)
-
-    for addr in entries.keys():
-        entry = entries[addr]
-        s = SVGSurface(f"{dirpath}/{entry['label']}.svg", 320, 200)
-        c = Context(s)
-        zoom = entry["zoom"]
-        x = entry["x"]
-        y = entry["y"]
-
-        if not isinstance(zoom, int):
-            zoom = 0x40 #HACK!
-
-        if not isinstance(x, int):
-            x = 160 #HACK!
-
-        if not isinstance(y, int):
-            y = 100 #HACK!
-
-        #print ("\ndecoding polygons at {}: {}".format(hex(addr), entry))
-        pdata_offset = addr
-        readAndDrawPolygon(c, COLOR_BLACK, zoom, x, y)
-        s.finish()
-
-    # reset structures:
-    cinematic_entries = {}
-    cinematic_counter = 0
 
 def makedir(path):
+    import os
     if not os.path.exists(path):
         os.mkdir(path)
+
 
 import sys
 if len(sys.argv) != 3:
@@ -601,13 +851,20 @@ else:
     output_dir = sys.argv[2]
     gamerom = f"{romset_dir}/bytecode.rom"
     makedir(output_dir)
+    
+    from decode_polygons import PolygonDecoder
+    pd = PolygonDecoder(romset_dir,
+                        output_dir)
+    
     for game_level in range(9):
         print (f"disassembling level {game_level}...")
         trace = AWVM_Trace(gamerom, rombank=0x10000*game_level, loglevel=0)
+        trace.pending_entry_points = POSSIBLY_UNUSED_CODEBLOCKS.get(game_level, [])
+        trace.current_palette_number = 0
         trace.run()
-#    trace.print_ranges()
-#    trace.print_grouped_ranges()
-#    print_video_entries()
+#        trace.print_ranges()
+#        trace.print_grouped_ranges()
+#        print_video_entries()
 
         level_path = f"{output_dir}/level_{game_level}"
         makedir(level_path)
@@ -615,12 +872,13 @@ else:
         print (f"\t{len(cinematic_entries.keys())} cinematic entries.")
         # cinematic polygon data:
         used_pdata = []
-        extract_polygon_data(romset_dir, True)
+        pd.extract_polygon_data(game_level, cinematic_entries, cinematic=True)
+        cinematic_entries = {}
+        cinematic_counter = 0
         # print_unused_polygon_data()
-
 
     # common polygon data:
     print (f"\t{len(video2_entries.keys())} video2 entries.")
-    extract_polygon_data(romset_dir, False)
+    pd.extract_polygon_data(game_level, video2_entries, cinematic=False)
 
 
